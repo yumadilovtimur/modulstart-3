@@ -13,10 +13,12 @@ namespace homework3.Controllers
     public class UsersController : ControllerBase
     {
         private readonly GetUsersInfoRequestHandler _getUsersInfoRequestHandler;
+        private readonly AddUsersInfoRequestHandler _addUsersInfoRequestHandler;
 
-        public UsersController(GetUsersInfoRequestHandler getUsersInfoRequestHandler)
+        public UsersController(GetUsersInfoRequestHandler getUsersInfoRequestHandler, AddUsersInfoRequestHandler addUsersInfoRequestHandler)
         {
             _getUsersInfoRequestHandler = getUsersInfoRequestHandler;
+            _addUsersInfoRequestHandler = addUsersInfoRequestHandler;
         }
 
         [HttpGet("{id}")]
@@ -26,12 +28,12 @@ namespace homework3.Controllers
         }
 
         [HttpPost("append")]
-        public Task<User> AppendUser([FromBody] User user)
+
+        public void AppendUser([FromBody] User user)
         {
             Guid guid = Guid.NewGuid();
             user.id = guid;
-
-            return Task.FromResult<User>(user);
+            _addUsersInfoRequestHandler.Handle(user);
         }
     }
 }
