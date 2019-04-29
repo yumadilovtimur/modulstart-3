@@ -29,11 +29,11 @@ namespace homework3.Controllers
 
         [HttpPost("append")]
 
-        public void AppendUser([FromBody] User user)
+        public Task<User> AppendUser([FromBody] User user)
         {
             Guid guid = Guid.NewGuid();
             user.id = guid;
-            _addUsersInfoRequestHandler.Handle(user);
+            return _addUsersInfoRequestHandler.Handle(user);
         }
     }
 }

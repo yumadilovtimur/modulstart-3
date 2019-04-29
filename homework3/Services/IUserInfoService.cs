@@ -9,7 +9,6 @@ namespace homework3.Services
     public interface IUserInfoService
     {
         Task<User> GetById(Guid id);
-        void AppendUser(User user);
-
+        Task<User> AppendUser(User user);
     }
 }

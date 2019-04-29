@@ -14,14 +14,14 @@ namespace homework3.Application
             _userInfoService = userInfoService;
         }
 
-        public void Handle(User user)
+        public Task<User> Handle(User user)
         {
             if (user.id == Guid.Empty)
             {
-                throw new ArgumentException("Некорректный идентификатор пользователя", nameof(user.id));
+                throw new ArgumentException("Ошибка", nameof(user.id));
             }
 
-            _userInfoService.AppendUser(user);
+            return _userInfoService.AppendUser(user);
         }
     }
 }

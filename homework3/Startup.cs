@@ -27,6 +27,7 @@ namespace homework3
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<GetUsersInfoRequestHandler>();
+            services.AddScoped<AddUsersInfoRequestHandler>();
             services.AddScoped<IUserInfoService, UserInfoService>();
         }
 
